@@ -1,5 +1,5 @@
 {
-  "name": "eduweb/urn",
+  "name": "eduweb/usefull-tools",
   "version": "1.0.0",
   "description": "N/A",
   "type": "magento2-module",
@@ -14,7 +14,7 @@
       "registration.php"
     ],
     "psr-4": {
-      "Eduweb\\Urn\\": ""
+      "Eduweb\\UsefullTools\\": ""
     }
   }
 }
