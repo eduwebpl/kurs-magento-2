@@ -1,11 +1,10 @@
 {
-  "name": "eduweb/moduleb",
+  "name": "eduweb/xml-extender",
   "version": "1.0.0",
   "description": "N/A",
   "type": "magento2-module",
   "require": {
-    "magento/framework": "*",
-    "eduweb/modulea": "1.0.*"
+    "magento/framework": "*"
   },
   "license": [
     "Open Software License (OSL)"
@@ -15,7 +14,7 @@
       "registration.php"
     ],
     "psr-4": {
-      "Eduweb\\ModuleB\\": ""
+      "Eduweb\\XmlExtender\\": ""
     }
   }
 }
