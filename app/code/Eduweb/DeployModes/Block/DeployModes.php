@@ -9,5 +9,6 @@ class DeployModes extends Template
 {
     public function _beforeToHtml()
     {
+        throw new \Exception("Test message");
     }
 }

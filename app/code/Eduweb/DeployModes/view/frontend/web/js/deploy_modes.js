@@ -3,5 +3,5 @@ require([
 ], function ($) {
     'use strict';
 
-    console.log('Js init');
+    console.log('Js init - test');
 });
