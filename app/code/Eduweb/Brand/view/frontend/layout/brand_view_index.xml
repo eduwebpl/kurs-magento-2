@@ -7,6 +7,26 @@
                     <argument name="view_model" xsi:type="object">Eduweb\Brand\ViewModel\View</argument>
                 </arguments>
             </block>
+
+            <container name="additional_blocks" htmlClass="brand-class" htmlId="brand-id" htmlTag="fieldset">
+                <block name="model_x" template="Eduweb_Brand::view/custom.phtml" after="model_y">
+                    <arguments>
+                        <argument name="code" xsi:type="string">model_x</argument>
+                    </arguments>
+                </block>
+
+                <block name="model_y" template="Eduweb_Brand::view/custom.phtml">
+                    <arguments>
+                        <argument name="code" xsi:type="string">model_y</argument>
+                    </arguments>
+                </block>
+
+                <block name="model_s" template="Eduweb_Brand::view/custom.phtml">
+                    <arguments>
+                        <argument name="code" xsi:type="string">model_s</argument>
+                    </arguments>
+                </block>
+            </container>
         </referenceContainer>
     </body>
 </page>
