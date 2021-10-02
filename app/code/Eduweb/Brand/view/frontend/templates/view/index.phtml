@@ -1,3 +1,14 @@
 <?php /** @var \Magento\Framework\View\Element\Template $block */?>
+<?php $viewModel = $block->getData('view_model') ?>
 
-<h2>Hello world!</h2>
+<?php $brandInfo = $viewModel->getBrandInfo() ?>
+
+<h2><?= $brandInfo['name'] ?></h2>
+
+<?php if(isset($brandInfo['description'])): ?>
+    <h3>hello world</h3>
+<?php endif; ?>
+
+<?php foreach ($brandInfo['collaborations'] as $collaboration): ?>
+    <p><?= $collaboration ?></p>
+<?php endforeach; ?>

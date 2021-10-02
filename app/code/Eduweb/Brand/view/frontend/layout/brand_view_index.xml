@@ -2,7 +2,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template" name="hello_world" as="hello_world" template="Eduweb_Brand::view/index.phtml"/>
+            <block name="hello_world" as="hello_world" template="Eduweb_Brand::view/index.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Eduweb\Brand\ViewModel\View</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>
