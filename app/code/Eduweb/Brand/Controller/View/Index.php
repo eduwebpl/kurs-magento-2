@@ -5,24 +5,22 @@ namespace Eduweb\Brand\Controller\View;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultFactory;
 
 class Index implements HttpGetActionInterface
 {
     protected RequestInterface $request;
 
-    public function __construct(RequestInterface $request)
+    protected ResultFactory $resultFactory;
+
+    public function __construct(RequestInterface $request, ResultFactory $resultFactory)
     {
         $this->request = $request;
+        $this->resultFactory = $resultFactory;
     }
 
     public function execute()
     {
-        $code = $this->request->getParam('code');
-        var_dump($code);
-        exit;
-
-        var_dump('Test');
-        exit;
+        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
     }
 }
