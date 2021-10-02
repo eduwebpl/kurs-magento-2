@@ -5,6 +5,12 @@
             <block name="hello_world" as="hello_world" template="Eduweb_Brand::view/index.phtml">
                 <arguments>
                     <argument name="view_model" xsi:type="object">Eduweb\Brand\ViewModel\View</argument>
+                    <argument name="code" xsi:type="string">code</argument>
+                    <argument name="number" xsi:type="number">12</argument>
+                    <argument name="is_enabled" xsi:type="boolean">true</argument>
+                    <argument name="descriptions" xsi:type="array">
+                        <item name="test" xsi:type="string">test</item>
+                    </argument>
                 </arguments>
             </block>
         </referenceContainer>
