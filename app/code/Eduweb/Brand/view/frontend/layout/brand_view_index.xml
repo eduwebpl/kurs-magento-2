@@ -6,6 +6,11 @@
                 <arguments>
                     <argument name="view_model" xsi:type="object">Eduweb\Brand\ViewModel\View</argument>
                 </arguments>
+                <block name="child_1" template="Eduweb_Brand::view/custom.phtml" as="child_1_alias">
+                    <arguments>
+                        <argument name="code" xsi:type="string">child_1</argument>
+                    </arguments>
+                </block>
             </block>
 
             <container name="additional_blocks" htmlClass="brand-class" htmlId="brand-id" htmlTag="fieldset">
