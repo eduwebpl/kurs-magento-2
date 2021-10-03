@@ -17,6 +17,12 @@
         <move element="model_y" destination="content" before="-"/>
 
         <referenceBlock name="model_x" remove="true"/>
+
+        <referenceBlock name="hello_world">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Eduweb_Brand::template_x.phtml</argument>
+            </action>
+        </referenceBlock>
     </body>
 
 
