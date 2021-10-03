@@ -6,6 +6,7 @@ namespace Eduweb\Brand\Controller\View;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\View\Result\Page;
 
 class Index implements HttpGetActionInterface
 {
@@ -21,6 +22,10 @@ class Index implements HttpGetActionInterface
 
     public function execute()
     {
-        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        /** @var Page $result */
+        $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $result->addHandle('customer_account');
+
+        return $result;
     }
 }
