@@ -37,12 +37,6 @@ class BrandRepository implements BrandRepositoryInterface
 
         }
 
-        /** @var BrandInterface $brandData */
-        $brandData = $this->brandInterfaceFactory->create();
-        $brandData->setId($brandModel->getData(BrandInterface::ID));
-        $brandData->setName($brandModel->getData(BrandInterface::NAME));
-        $brandData->setUrlKey($brandModel->getData(BrandInterface::URL_KEY));
-
         return $this->getObject($brandModel);
     }
 
@@ -58,7 +52,7 @@ class BrandRepository implements BrandRepositoryInterface
     {
         /** @var BrandInterface $brandData */
         $brandData = $this->brandInterfaceFactory->create();
-        $brandData->setId($brand->getData(BrandInterface::ID));
+        $brandData->setId((int)$brand->getData(BrandInterface::ID));
         $brandData->setName($brand->getData(BrandInterface::NAME));
         $brandData->setUrlKey($brand->getData(BrandInterface::URL_KEY));
 

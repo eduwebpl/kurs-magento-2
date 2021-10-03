@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Eduweb\Brand\Controller\View;
 
+use Eduweb\Brand\Api\BrandRepositoryInterface;
+use Eduweb\Brand\Api\Data\BrandInterface;
 use Eduweb\Brand\Model\Brand;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\Json;
@@ -12,25 +14,32 @@ class Save implements HttpGetActionInterface
 {
     protected ResultFactory $resultFactory;
 
-    protected \Eduweb\Brand\Model\BrandFactory $brandFactory;
+    protected \Eduweb\Brand\Api\Data\BrandInterfaceFactory $brandInterfaceFactory;
 
-    public function __construct(ResultFactory $resultFactory, \Eduweb\Brand\Model\BrandFactory $brandFactory)
-    {
+    protected BrandRepositoryInterface $brandRepository;
+
+    public function __construct(
+        ResultFactory $resultFactory,
+        \Eduweb\Brand\Api\Data\BrandInterfaceFactory $brandInterfaceFactory,
+        BrandRepositoryInterface $brandRepository
+    ) {
         $this->resultFactory = $resultFactory;
-        $this->brandFactory = $brandFactory;
+        $this->brandInterfaceFactory = $brandInterfaceFactory;
+        $this->brandRepository = $brandRepository;
     }
 
     public function execute()
     {
-        /** @var Brand $brand */
-        $brand = $this->brandFactory->create();
-        $brand->setData('name', 'Tesla');
-        $brand->setData('url_key', 'tesla');
-        $brand->save();
+        /** @var BrandInterface $brandData */
+        $brandData = $this->brandInterfaceFactory->create();
+        $brandData->setName('Volvo');
+        $brandData->setUrlKey('volvo');
+
+        $brandData = $this->brandRepository->save($brandData);
 
         /** @var Json $result */
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
-        $result->setData($brand->getData());
+        $result->setData($brandData->getData());
 
         return $result;
     }
