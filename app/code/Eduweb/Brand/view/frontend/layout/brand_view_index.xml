@@ -3,7 +3,7 @@
     <head>
         <meta name="test" content="test"/>
         <css src="Eduweb_Brand::css/file.css"/>
-        <script src="Eduweb_Brand::js/alert.js"/>
+<!--        <script src="Eduweb_Brand::js/alert.js"/>-->
     </head>
     <body>
         <referenceContainer name="content">
