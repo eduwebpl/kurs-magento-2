@@ -2,4 +2,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Eduweb\Brand\Api\BrandRepositoryInterface" type="Eduweb\Brand\Model\Repository\BrandRepository"/>
     <preference for="Eduweb\Brand\Api\Data\BrandInterface" type="Eduweb\Brand\Model\Data\Brand"/>
+    <preference for="Eduweb\Brand\Api\Data\BrandSearchResultsInterface" type="Eduweb\Brand\Model\Data\BrandSearchResults"/>
 </config>

@@ -5,7 +5,10 @@ namespace Eduweb\Brand\Model\Repository;
 
 use Eduweb\Brand\Api\BrandRepositoryInterface;
 use Eduweb\Brand\Api\Data\BrandInterface;
+use Eduweb\Brand\Api\Data\BrandSearchResultsInterface;
 use Eduweb\Brand\Model\ResourceModel\Brand;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
+use Magento\Framework\Api\SearchCriteriaInterface;
 
 class BrandRepository implements BrandRepositoryInterface
 {
@@ -14,15 +17,24 @@ class BrandRepository implements BrandRepositoryInterface
     protected \Eduweb\Brand\Api\Data\BrandInterfaceFactory $brandInterfaceFactory;
 
     protected Brand $brandResourceModel;
+    protected Brand\CollectionFactory $collectionFactory;
+    protected \Eduweb\Brand\Api\Data\BrandSearchResultsInterfaceFactory $brandSearchResultsInterfaceFactory;
+    protected CollectionProcessor $collectionProcessor;
 
     public function __construct(
         \Eduweb\Brand\Model\BrandFactory $brandFactory,
         \Eduweb\Brand\Api\Data\BrandInterfaceFactory $brandInterfaceFactory,
-        Brand $brandResourceModel
+        Brand $brandResourceModel,
+        \Eduweb\Brand\Model\ResourceModel\Brand\CollectionFactory $collectionFactory,
+        \Eduweb\Brand\Api\Data\BrandSearchResultsInterfaceFactory $brandSearchResultsInterfaceFactory,
+        CollectionProcessor $collectionProcessor
     ) {
         $this->brandFactory = $brandFactory;
         $this->brandInterfaceFactory = $brandInterfaceFactory;
         $this->brandResourceModel = $brandResourceModel;
+        $this->collectionFactory = $collectionFactory;
+        $this->brandSearchResultsInterfaceFactory = $brandSearchResultsInterfaceFactory;
+        $this->collectionProcessor = $collectionProcessor;
     }
 
     public function save(BrandInterface $brand): BrandInterface
@@ -57,5 +69,24 @@ class BrandRepository implements BrandRepositoryInterface
         $brandData->setUrlKey($brand->getData(BrandInterface::URL_KEY));
 
         return $brandData;
+    }
+
+    public function getList(SearchCriteriaInterface $searchCriteria): BrandSearchResultsInterface
+    {
+        $collection = $this->collectionFactory->create();
+        $this->collectionProcessor->process($searchCriteria, $collection);
+
+        $items = [];
+        foreach ($collection as $brand) {
+            $items[] = $this->getObject($brand);
+        }
+
+        /** @var BrandSearchResultsInterface $brandSearchResults */
+        $brandSearchResults = $this->brandSearchResultsInterfaceFactory->create();
+        $brandSearchResults->setItems($items);
+        $brandSearchResults->setTotalCount($collection->getSize());
+        $brandSearchResults->setSearchCriteria($searchCriteria);
+
+        return $brandSearchResults;
     }
 }
