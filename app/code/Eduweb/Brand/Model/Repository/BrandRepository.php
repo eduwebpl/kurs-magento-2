@@ -89,4 +89,12 @@ class BrandRepository implements BrandRepositoryInterface
 
         return $brandSearchResults;
     }
+
+    public function getByUrlKey(string $urlKey): BrandInterface
+    {
+        $brand = $this->brandFactory->create();
+        $this->brandResourceModel->load($brand, $urlKey, BrandInterface::URL_KEY);
+
+        return $this->getObject($brand);
+    }
 }

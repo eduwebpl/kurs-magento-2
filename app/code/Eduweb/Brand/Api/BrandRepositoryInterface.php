@@ -14,4 +14,6 @@ interface BrandRepositoryInterface
     public function getById(int $id): BrandInterface;
 
     public function getList(SearchCriteriaInterface $searchCriteria): BrandSearchResultsInterface;
+
+    public function getByUrlKey(string $urlKey): BrandInterface;
 }
